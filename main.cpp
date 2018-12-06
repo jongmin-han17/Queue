@@ -4,12 +4,12 @@
 #include <iostream>
 using namespace std;
 
-class Queue
+class Queue //This is circular queue.
 {
 private:
-	int front;
-	int rear;
-	int size;
+    int front;
+    int rear;
+    int size;
 	int * arr;
 public:
 	Queue(int _size)
@@ -22,7 +22,6 @@ public:
 
 	~Queue()
 	{
-	    cout << "Destruction activated.\n";
 		delete []arr;
 	}
 
