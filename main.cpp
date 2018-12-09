@@ -81,7 +81,7 @@ int main()
     for (int i=0; i<9; i++)
         q->enque(i*2);
 
-    cout << "-------------------------\n";
+    cout << "--------------------------\n";
     for (int i=0; i<19; i++)
 		cout << q->deque() << endl;
 
