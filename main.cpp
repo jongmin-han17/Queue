@@ -1,3 +1,5 @@
+//Written by Jongmin Han
+//Circular Queue implementation in C++
 #include <iostream>
 using namespace std;
 
