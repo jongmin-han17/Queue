@@ -5,36 +5,41 @@ using namespace std;
 
 class Queue
 {
-private:
-	int front;
-	int rear;
-	int size;
-	int* arr;
 public:
-	Queue(int _size) : size(_size), front(0), rear(0)
-	{
-		arr = new int[size];
-	}
-
-	~Queue()
-	{
-		delete[] arr;
-	}
-
+	Queue(int size);
+	~Queue();
 	bool IsEmpty();
 	bool IsFull();
 	void Enque(int num);
 	int Deque();
+private:
+	int mFront;
+	int mRear;
+	int mSize;
+	int* mArr;
 };
+
+Queue::Queue(int size)
+	: mSize(size)
+	, mFront(0)
+	, mRear(0)
+{
+	mArr = new int[mSize];
+}
+
+Queue::~Queue()
+{
+	delete[] mArr;
+}
 
 bool Queue::IsEmpty()
 {
-	return rear == front;
+	return mRear == mFront;
 }
 
 bool Queue::IsFull()
 {
-	return front == (rear + 1) % size;
+	return mFront == (mRear + 1) % mSize;
 }
 
 void Queue::Enque(int num)
@@ -45,9 +50,9 @@ void Queue::Enque(int num)
 	}
 	else
 	{
-		rear++;
-		rear = rear % size;
-		arr[rear] = num;
+		mRear++;
+		mRear = mRear % mSize;
+		mArr[mRear] = num;
 	}
 }
 
@@ -60,9 +65,9 @@ int Queue::Deque()
 	}
 	else
 	{
-		front++;
-		front = front % size;
-		return arr[front];
+		mFront++;
+		mFront = mFront % mSize;
+		return mArr[mFront];
 	}
 }
 
@@ -70,24 +75,25 @@ int main()
 {
 	Queue* q = new Queue(20);
 
-	for (int i=0; i<19; i++)
+	for (int i = 0; i < 19; i++)
 	{
 		q->Enque(i*i);
 	}
 
-	for (int i=0; i<10; i++)
+	q->Enque(4);
+	for (int i = 0; i < 10; i++)
 	{
 		cout << q->Deque() << endl;
 	}
 
-	for (int i=0; i<9; i++)
+	for (int i = 0; i < 9; i++)
 	{
-		q->Enque(i*2);
+		q->Enque(i * 2);
 	}
 
 	cout << "---------------------------------\n";
 
-	for (int i=0; i<19; i++)
+	for (int i = 0; i < 19; i++)
 	{
 		cout << q->Deque() << endl;
 	}
